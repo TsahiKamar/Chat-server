@@ -1,0 +1,7 @@
+{
+    "env": {
+       "MONGO_DB_NAME":"MaccabiDbName",
+       "MONGO_ATLAS_PW": "mE5TQDRwpKrbHa11",
+       "JWT_KEY": "secret"
+    }  
+}
