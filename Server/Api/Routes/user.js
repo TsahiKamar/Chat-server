@@ -62,12 +62,16 @@ router.post('/login',(req,res) => {
     console.log('login user :' + user);
     console.log('login pass :' + pass);
     
-    Users.findOne({userName: user, password: pass}) 
+    const query = {"userName": user, "password": pass}//{ "quantity": { "$gte": 25 } };
+    const projection = {}
+
+
+    Users.find({userName: user, password:pass})
     .select("_id userName")    
     .exec()
     .then(usr => {
         console.log('login result usr:' + usr);
-        if (usr != null) {
+        if (usr) {
             console.log('login succesed ! ');
 
             res.status(200).json(user); //Return userName    
