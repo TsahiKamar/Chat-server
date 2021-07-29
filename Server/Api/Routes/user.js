@@ -12,6 +12,7 @@ router.get('/getUsers', (req, res) => {
     Users.find()
     .exec()
     .then(data => {
+        //console.log('getUsrs :' + JSON.stringify(data));
         res.status(200).json({
             users: data 
         });
@@ -28,15 +29,14 @@ router.get('/getUser/:userName', (req, res) => {
     const userName = req.params.userName;;
     console.log('getUser userName :' + userName);  
 
-    Users.find({userName: userName})
+    Users.findOne({userName: userName})
     .exec()
-    .then(usr => {
-        console.log('getUser result usr:' + usr);
+    .then(data => {
+        console.log('getUser result data:' + JSON.stringify(data));
 
-        if (usr != null || usr) {
-            console.log('User found' + usr);
+        if (data != null) {
             res.status(200).json({
-                data: usr
+                data: data
             });    
         } else {
             console.log('User not found !');
