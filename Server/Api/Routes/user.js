@@ -66,7 +66,7 @@ router.post('/login',(req,res) => {
     const projection = {}
 
 
-    Users.find({userName: user, password:pass})
+    Users.findOne({userName: user, password:pass})
     .select("_id userName")    
     .exec()
     .then(usr => {
