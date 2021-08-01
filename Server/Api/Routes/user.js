@@ -12,7 +12,6 @@ router.get('/getUsers', (req, res) => {
     Users.find()
     .exec()
     .then(data => {
-        //console.log('getUsrs :' + JSON.stringify(data));
         res.status(200).json({
             users: data 
         });
@@ -62,19 +61,18 @@ router.post('/login',(req,res) => {
     console.log('login user :' + user);
     console.log('login pass :' + pass);
     
-    const query = {"userName": user, "password": pass}//{ "quantity": { "$gte": 25 } };
+    const query = {"userName": user, "password": pass}
     const projection = {}
 
 
     Users.findOne({userName: user, password:pass})
-    .select("_id userName")    
     .exec()
-    .then(usr => {
-        console.log('login result usr:' + usr);
+    .then(usr =>  {
         if (usr) {
             console.log('login succesed ! ');
-
-            res.status(200).json(user); //Return userName    
+            console.log('login result usr userName:' + usr["userName"]);
+  
+            res.status(200).json(usr["userName"]); //Return userName    
         } else {
             console.log('login failed ! ');
 
